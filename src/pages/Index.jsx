@@ -16,7 +16,23 @@ const Index = () => {
   return (
     <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       {submitted ? (
-        <Icon as={FaCheckCircle} w={24} h={24} color="green.500" />
+        <VStack spacing={4} align="center">
+          <Icon as={FaCheckCircle} w={24} h={24} color="green.500" />
+          <Button
+            colorScheme="teal"
+            onClick={() => {
+              navigator.clipboard.writeText(window.location.href);
+              useToast({
+                title: "Link copied!",
+                status: "success",
+                duration: 2000,
+                isClosable: true,
+              });
+            }}
+          >
+            Tell your friends
+          </Button>
+        </VStack>
       ) : (
         <VStack spacing={4} width="100%">
           <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
